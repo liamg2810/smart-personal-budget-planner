@@ -12,8 +12,11 @@ except ImportError:
         exit(1)
 
 
-def plot_income_vs_expenses():
-    pass
+def plot_income_vs_expenses(income, expenses):
+    plt.plot(income, label="Income")
+    plt.plot(expenses, label="Expenses")
+    plt.legend()
+    plt.show()
 
 def plot_category_expenses():
     pass
