@@ -13,8 +13,17 @@ except ImportError:
 
 
 def plot_income_vs_expenses(income, expenses):
-    plt.plot(income, label="Income")
-    plt.plot(expenses, label="Expenses")
+    if income is None or expenses is None:
+        raise ValueError("Income and expenses must be provided")
+    
+    if type(income) not in [int, float] or type(expenses) not in [int, float]:
+        raise ValueError("Income and expenses must be numbers")
+
+    if income < 0 or expenses < 0:
+        raise ValueError("Income and expenses must be positive")
+
+    plt.bar(0, income, label="Income")
+    plt.bar(1, expenses, label="Expenses")
     plt.legend()
     plt.show()
 
