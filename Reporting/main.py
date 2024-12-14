@@ -12,7 +12,7 @@ except ImportError:
         exit(1)
 
 
-def plot_income_vs_expenses(income, expenses):
+def plot_income_vs_expenses(income: int | float, expenses: int | float) -> None:
     if income is None or expenses is None:
         raise ValueError("Income and expenses must be provided")
     
@@ -27,5 +27,25 @@ def plot_income_vs_expenses(income, expenses):
     plt.legend()
     plt.show()
 
-def plot_category_expenses():
-    pass
+def plot_category_expenses(categories: list[dict[str, int | float]]) -> None:
+    if categories is None:
+        raise ValueError("Categories must be provided")
+
+    if not all(type(category) == dict for category in categories):
+        raise ValueError("Categories must be dictionaries")
+
+    if not all("name" in category and "value" in category for category in categories):
+        raise ValueError("Categories must have 'name' and 'value' keys")
+
+    if not all(type(category["name"]) == str for category in categories):
+        raise ValueError("Category names must be strings")
+
+    if not all(type(category["value"]) in [int, float] for category in categories):
+        raise ValueError("Category values must be numbers")
+
+    if not all(category["value"] >= 0 for category in categories):
+        raise ValueError("Category values must be positive")
+
+
+    plt.pie([category["value"] for category in categories], labels=[f"{category["name"]} - £{category['value']}" for category in categories], autopct="%1.1f%%")
+    plt.show()
