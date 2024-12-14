@@ -10,6 +10,9 @@ def test_plot_income_vs_expenses_invalid_value():
     except ValueError as ve:
         print(ve)
         assert True
+        return
+
+    assert False
 
 def test_plot_income_vs_expenses_invalid_type():
 
@@ -18,6 +21,9 @@ def test_plot_income_vs_expenses_invalid_type():
     except ValueError as ve:
         print(ve)
         assert True
+        return
+
+    assert False
 
 def test_plot_income_vs_expenses_invalid_none():
     try:
@@ -25,6 +31,9 @@ def test_plot_income_vs_expenses_invalid_none():
     except ValueError as ve:
         print(ve)
         assert True
+        return
+
+    assert False
 
 def test_plot_income_vs_expenses():
     test_plot_income_vs_expenses_valid()
@@ -56,6 +65,9 @@ def test_plot_category_expenses_invalid_value():
     except ValueError as ve:
         print(ve)
         assert True
+        return
+
+    assert False
 
 def test_plot_category_expenses_invalid_type():
     categories = [
@@ -70,6 +82,9 @@ def test_plot_category_expenses_invalid_type():
     except ValueError as ve:
         print(ve)
         assert True
+        return
+
+    assert False
 
 def test_plot_category_expenses_invalid_key():
     categories = [
@@ -84,6 +99,9 @@ def test_plot_category_expenses_invalid_key():
     except ValueError as ve:
         print(ve)
         assert True
+        return
+
+    assert False
 
 def test_plot_category_expenses_invalid_name():
     categories = [
@@ -98,6 +116,9 @@ def test_plot_category_expenses_invalid_name():
     except ValueError as ve:
         print(ve)
         assert True
+        return
+
+    assert False
 
 def test_plot_category_expensed_non_number_value():
     categories = [
@@ -112,6 +133,9 @@ def test_plot_category_expensed_non_number_value():
     except ValueError as ve:
         print(ve)
         assert True
+        return
+
+    assert False
 
 def test_plot_category_expenses():
     test_plot_category_expenses_valid()
