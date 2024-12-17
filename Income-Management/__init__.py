@@ -18,7 +18,8 @@ def get_total_income():
 
 def main():
     while True:
-        
+      print("\nincome managment menu:\n")
+       
 
    
    
