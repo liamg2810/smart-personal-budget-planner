@@ -1,5 +1,19 @@
-import json, time, os
-from colorama import Fore, Back, Style, init
+import subprocess
+try:
+    import json, time, os
+    from colorama import Fore, Back, Style, init
+except:
+    print("Updating the required modules: \njson, time, os, colorama\n")
+    try:
+        subprocess.run(["python", "-m", "pip", "install", "json"])
+        subprocess.run(["python", "-m", "pip", "install", "time"])
+        subprocess.run(["python", "-m", "pip", "install", "os"])
+        subprocess.run(["python", "-m", "pip", "install", "colorama"])
+        print("Modules updated successfully\n")
+        os._exit(0)
+    except:
+        print("Failed to update the required modules\n")
+        os._exit(0)
 init(autoreset=True)
 categorylist = []
 budgetlist = []
