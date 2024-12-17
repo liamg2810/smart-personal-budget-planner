@@ -1,20 +1,31 @@
 income_list=[]
 
-def add_income(source,amount):
+def add_income():
     source=(input("source of income:"))
     amount=float(input("amount:"))
     
-    income_dictionary={'source',source,'amount',amount}
+    income_dictionary={'source':source,'amount':amount}
     income_list.append(income_dictionary)
 
 
 def get_total_income():
-    pass
+    for income_dictionary in income_list:
+        print(income_dictionary["amount"])
+        total=0
+
 
 
 
 def main():
-    pass
+    while True:
+        
+
+   
+   
+   
+    add_income()
+    add_income()
+    get_total_income()
 
 if __name__ == "__main__":
     main()
