@@ -18,30 +18,31 @@ init(autoreset=True)
 categorylist = []
 budgetlist = []
 def main():
-    select = selection()
-    if select==1:
-        add_category()
-    elif select==2:
-        append_category()
-    elif select==3:
-        check_budget()
-    elif select==4:
-        print("Exiting program\n")
-        time.sleep(1)
-        print(Fore.GREEN + "3\n")
-        time.sleep(1)
-        print(Fore.YELLOW + "2\n")
-        time.sleep(1)
-        print(Fore.RED + "1\n")
-        time.sleep(1)
-        print(Fore.LIGHTCYAN_EX + "Goodbye!")
-        time.sleep(1)
-        os._exit(0)
+    while True:
+        select = selection()
+        if select==1:
+            add_category()
+        elif select==2:
+            append_category()
+        elif select==3:
+            check_budget()
+        elif select==4:
+            print("Exiting program\n")
+            time.sleep(1)
+            print(Fore.GREEN + "3\n")
+            time.sleep(1)
+            print(Fore.YELLOW + "2\n")
+            time.sleep(1)
+            print(Fore.RED + "1\n")
+            time.sleep(1)
+            print(Fore.LIGHTCYAN_EX + "Goodbye!")
+            return
+            
 
 def selection(): 
     select=input("Would you like to: \n1.Add a new category and budget \n2.Append an existing categories budget \n3.Check a cost against a characters budget \n4.Exit \n\n")
     try:
-        select = int(select)
+        select = float(select)
     except:
         print(Fore.RED + "\nPlease enter a valid selection\n")
         select = selection()
@@ -55,14 +56,14 @@ def add_category():
     category = input("\nEnter the category you would like to add: \n")
     budget = input("\nEnter the budget for this category: \n")
     try :
-        budget = int(budget)
+        budget = float(budget)
     except:
         print(Fore.RED + "\nPlease enter a valid budget\n")
         add_category()
     categorylist.append(category)
     budgetlist.append(budget)
     print(Fore.GREEN + "\nCategory added successfully!\n")
-    main()
+
 
 def append_category():
     Found = False
@@ -75,31 +76,32 @@ def append_category():
     
     if Found != True:
         print(Fore.RED + "\nThe category was not found, check your spelling!\n")
-        main()
     
     else:
         budget = int(input("\nEnter the amount you would like to append: \n"))
         budgetlist[index] = budget
         print(Fore.GREEN + "\nYour budget was appended!\n")
-        main()
-
 
 def check_budget():
-    Found = False
     category = input("\nEnter the category you would like to check: \n")
-    cost = int(input("\nEnter the cost of the item: \n"))
+    cost = input("\nEnter the cost of the item: \n")
+    try:
+        float(cost)
+    except:
+        raise ValueError(Fore.RED + "\nPlease input a number!\n")
     for item in categorylist:
         if item == category:
             index = categorylist.index(category)
             if cost > budgetlist[index]:
                 print(Fore.RED + "\nYou have exceeded your budget!")
+                difference = budgetlist[index] - cost
+                return True, difference
             else:
                 print(Fore.GREEN + "\nYou have not exceeded your budget!\n")
-            found = True
-    
-    if found == False:
-        print(Fore.RED + "\nCategory not found!\n")
-    main()
+                difference = budgetlist[index] - cost
+                return False, difference
+
+    raise ValueError(Fore.RED + "\nCategory not found!\n")
 
 if __name__ == "__main__":
     print("Unit testing now! \n")
