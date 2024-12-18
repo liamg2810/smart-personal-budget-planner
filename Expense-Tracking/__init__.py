@@ -1,17 +1,5 @@
 import json
 
-expences = [
-    {"category": "Food", "amount": 10},
-    {"category": "Other", "amount": 30},
-    {"category": "Other2", "amount": 20},
-    {"category": "Other4", "amount": 50},
-    {"category": "Other5", "amount": 160},
-    ]
-
-with open("expences.json", mode="w", encoding="utf-8") as write_file:
-    print(expences)
-    json.dump(expences, write_file)
-
 
 expenses = []
 
@@ -58,6 +46,12 @@ def main():
             break
         else:
             print("Invalid choice. Please try again.")
+
+
+    with open("Expense-Tracking/expences.json", mode="w", encoding="utf-8") as write_file:
+        print(expenses)
+        json.dump(expenses, write_file)
+
 if __name__ == "__main__": 
     main()
 
