@@ -1,3 +1,18 @@
+import json
+
+expences = [
+    {"category": "Food", "amount": 10},
+    {"category": "Other", "amount": 30},
+    {"category": "Other2", "amount": 20},
+    {"category": "Other4", "amount": 50},
+    {"category": "Other5", "amount": 160},
+    ]
+
+with open("expences.json", mode="w", encoding="utf-8") as write_file:
+    print(expences)
+    json.dump(expences, write_file)
+
+
 expenses = []
 
 
@@ -8,14 +23,10 @@ def add_expense(category, amount):
         print(f"Expense added: {category} - {amount}")
     except ValueError:
         print("Invalid amount, enter a numeric value.")
-
-
 def get_total_expenses():
     total_amount = sum(expense["amount"] for expense in expenses)
     print(f"Total expenses: {total_amount}")
     return total_amount
-
-
 def get_expenses_by_category(category):
     category_expenses = [expense for expense in expenses if expense["category"] == category]
     if category_expenses:
@@ -24,12 +35,6 @@ def get_expenses_by_category(category):
             print(f"- {expense['amount']}")
     else:
         print(f"No expenses found for category '{category}'.")
-
-
-
-
-
-
 def main():
     while True:
         print("\nExpense Tracker Menu:\n")
@@ -53,8 +58,6 @@ def main():
             break
         else:
             print("Invalid choice. Please try again.")
-
-if __name__ == "__main__":
-    
+if __name__ == "__main__": 
     main()
 
