@@ -19,9 +19,14 @@ def get_total_income():
 def main():
     while True:
       print("\nincome managment menu:\n")
-       
+      print("1.add income")
+      print("2.get total income")
+      print("3.Exit") 
+      choice=input("enter whic option(1,2,3)")
 
-   
+      if choice == "1":
+         source=(input("source of income:")) 
+         amount=float(input("amount:"))
    
    
     add_income()
