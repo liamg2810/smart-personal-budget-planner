@@ -36,6 +36,8 @@ def main():
             print(Fore.RED + "1\n")
             time.sleep(1)
             print(Fore.LIGHTCYAN_EX + "Goodbye!")
+            with open("Budget-Allocation/budget_data.json", "w") as json_file:
+                json.dump(categorylist, budgetlist, json_file)
             return
             
 
