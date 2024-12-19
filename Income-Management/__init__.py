@@ -27,11 +27,17 @@ def main():
       if choice == "1":
          source=(input("source of income:")) 
          amount=float(input("amount:"))
+         add_income(source,amount)
+      elif choice == "2":
+          get_total_income()
+      elif choice == "3":
+          print("exiting icnome management menu...")
+          break
+      else:
+          print("invalid option please try again and input options 1,2 or 3")
+          
    
-   
-    add_income()
-    add_income()
-    get_total_income()
+    
 
 if __name__ == "__main__":
     main()
