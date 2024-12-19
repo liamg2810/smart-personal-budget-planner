@@ -15,8 +15,7 @@ except:
         print("Failed to update the required modules\n")
         os._exit(0)
 init(autoreset=True)
-categorylist = []
-budgetlist = []
+budgetdata = {}
 def main():
     while True:
         select = selection()
@@ -37,7 +36,7 @@ def main():
             time.sleep(1)
             print(Fore.LIGHTCYAN_EX + "Goodbye!")
             with open("Budget-Allocation/budget_data.json", "w") as json_file:
-                json.dump(categorylist, budgetlist, json_file)
+                json.dump(budgetdata, json_file)
             return
             
 
@@ -56,52 +55,50 @@ def selection():
 
 def add_category():
     category = input("\nEnter the category you would like to add: \n")
+    if category in budget_data:
+        print(Fore.RED + "\nCategory already exists!\n")
+        return
     budget = input("\nEnter the budget for this category: \n")
-    try :
+    try:
         budget = float(budget)
     except:
         print(Fore.RED + "\nPlease enter a valid budget\n")
         add_category()
-    categorylist.append(category)
-    budgetlist.append(budget)
+    budget_data[category] = budget
     print(Fore.GREEN + "\nCategory added successfully!\n")
-
 
 def append_category():
     Found = False
     category = input("Enter the category you would like to append: \n")
 
-    for item in categorylist:
-        if item == category:
-            index = categorylist.index(category)
-        Found = True
-    
-    if Found != True:
+    if item not in categorylist:
         print(Fore.RED + "\nThe category was not found, check your spelling!\n")
+        return
     
-    else:
-        budget = int(input("\nEnter the amount you would like to append: \n"))
-        budgetlist[index] = budget
+    try:
+        budget = float(input("\nEnter the amount you would like to append: \n"))
+        budget_data[category] += budget
         print(Fore.GREEN + "\nYour budget was appended!\n")
+    except ValueError:
+        print(Fore.RED + "\nPlease enter a valid amount!\n")
 
 def check_budget():
     category = input("\nEnter the category you would like to check: \n")
-    cost = input("\nEnter the cost of the item: \n")
+    if category not in budget_data:
+        print(Fore.RED + "\nCategory not found!\n")
+        return
+
     try:
-        float(cost)
-    except:
-        raise ValueError(Fore.RED + "\nPlease input a number!\n")
-    for item in categorylist:
-        if item == category:
-            index = categorylist.index(category)
-            if cost > budgetlist[index]:
-                print(Fore.RED + "\nYou have exceeded your budget!")
-                difference = budgetlist[index] - cost
-                return True, difference
-            else:
-                print(Fore.GREEN + "\nYou have not exceeded your budget!\n")
-                difference = budgetlist[index] - cost
-                return False, difference
+        cost = float(input("\nEnter the cost of the item: \n"))
+        remaining_budget = budget_data[category] - cost
+        if remaining_budget < 0:
+            print(Fore.RED + "\nYou have exceeded your budget!\n")
+            print(f"Over budget by: {-remaining_budget}")
+        else:
+            print(Fore.GREEN + "\nYou have not exceeded your budget!\n")
+            print(f"Remaining budget: {remaining_budget}")
+    except ValueError:
+        print(Fore.RED + "\nPlease enter a valid cost!\n")
 
     raise ValueError(Fore.RED + "\nCategory not found!\n")
 
