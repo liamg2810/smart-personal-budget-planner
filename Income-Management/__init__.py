@@ -16,7 +16,7 @@ def get_total_income():
     for income_dictionary in income_list:
         print(income_dictionary["amount"])
         total += income_dictionary["amount"]
-
+    print("your total income is",total)
 def main():
 
 
@@ -34,7 +34,7 @@ def main():
       elif choice == "2":
           get_total_income()
       elif choice == "3":
-          print("exiting icnome management menu...")
+          print("exiting income management menu...")
           break
       else:
           print("invalid option please try again and input options 1,2 or 3")
