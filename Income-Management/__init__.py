@@ -12,9 +12,10 @@ def add_income(source,amount):
 
 
 def get_total_income():
+    total=0
     for income_dictionary in income_list:
         print(income_dictionary["amount"])
-        total=0
+        total += income_dictionary["amount"]
 
 def main():
 
