@@ -1,7 +1,9 @@
 import json
 
+with open('Expense-Tracking/expences.json', 'r') as file:
+    expenses = json.load(file)
 
-expenses = []
+
 
 
 def add_expense(category, amount):
@@ -46,7 +48,7 @@ def main():
             break
         else:
             print("Invalid choice. Please try again.")
-
+ 
 
     with open("Expense-Tracking/expences.json", mode="w", encoding="utf-8") as write_file:
         print(expenses)
